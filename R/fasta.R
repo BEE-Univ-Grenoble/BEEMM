@@ -28,9 +28,6 @@ NULL
 #'   FALSE.
 #' @param num_threads The number of processing threads to use for initial
 #'   parsing.
-#' @param skip Number of lines to skip before reading data.
-#' @param n_max Number of lines to read. If n_max is -1, all lines in file will
-#'   be read.
 #'
 #' @return a tibble with two columns
 #'   - `id` : the sequence identifier (character)
@@ -39,8 +36,7 @@ NULL
 #' @export
 #'
 #' @examples
-read_fasta <- function(file, skip = 0, n_max = Inf,
-                       progress = FALSE,
+read_fasta <- function(file, progress = FALSE,
                        num_threads = readr_threads()) {
   read_lines(file,
     skip_empty_rows = TRUE,
@@ -64,15 +60,5 @@ read_fasta <- function(file, skip = 0, n_max = Inf,
       values_from = lines
     ) %>%
     select(id, sequence) %>%
-    mutate(id = str_extract(id, pattern = "(?<=^>)[:graph:]+")) -> seqs
-
-  if (skip > 0) {
-    seqs %>% slice(skip:n()) -> seqs
-  }
-
-  if (n_max < nrow(seqs)) {
-    seqs %>% slice(1:n_max) -> seqs
-  }
-
-  seqs
+    mutate(id = str_extract(id, pattern = "(?<=^>)[:graph:]+"))
 }

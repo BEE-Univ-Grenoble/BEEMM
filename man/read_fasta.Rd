@@ -4,13 +4,7 @@
 \alias{read_fasta}
 \title{Read DNA sequences from a file}
 \usage{
-read_fasta(
-  file,
-  skip = 0,
-  n_max = Inf,
-  progress = FALSE,
-  num_threads = readr_threads()
-)
+read_fasta(file, progress = FALSE, num_threads = readr_threads())
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either a
@@ -23,11 +17,6 @@ literal data, the input must be either wrapped with I(), be a string
 containing at least one new line, or be a vector containing at least one
 string with a new line. Using a value of clipboard() will read from the
 system clipboard.}
-
-\item{skip}{Number of lines to skip before reading data.}
-
-\item{n_max}{Number of lines to read. If n_max is -1, all lines in file will
-be read.}
 
 \item{progress}{Display a progress bar? By default it will only display in an
 interactive session and not while knitting a document. The automatic

@@ -1,7 +1,3 @@
-#' @import readr
-#' @import stringr
-#' @import dplyr
-#' @import tibble
 #' @author Eric Coissac
 NULL
 
@@ -32,6 +28,13 @@ NULL
 #' @return a tibble with two columns
 #'   - `id` : the sequence identifier (character)
 #'   - `sequence` : the DNA sequence (character)
+#'
+#' @importFrom readr read_lines readr_threads
+#' @importFrom stringr str_detect str_c str_extract
+#' @importFrom dplyr mutate group_by summarise ungroup select
+#' @importFrom tibble tibble
+#' @importFrom magrittr %>%
+#' @importFrom tidyr pivot_wider
 #'
 #' @export
 #'

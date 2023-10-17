@@ -2,6 +2,8 @@
 
 export(as_kmer_table)
 export(every_kmer_table)
+export(is_kmer_proba)
+export(is_kmer_table)
 export(kmer_proba)
 export(kmer_size)
 export(kmer_table)

@@ -22,12 +22,13 @@
 #' kmers <- as_kmer_table(data.frame(kmer = c("AAA", "AAC", "AAG"), count = c(10, 20, 30)))
 #' kmer_proba(kmers)
 #'
-#' @export 
+#' @export
 #' @importFrom stringr str_sub
 #' @importFrom dplyr mutate group_by ungroup select
 kmer_proba <- function(kmers, pseudocount = 1) {
     k <- kmer_size(kmers)
-    sum_table(
+
+    probs <-  sum_table(
         kmers,
         every_kmer_table(k,
             pseudocount = pseudocount
@@ -51,4 +52,21 @@ kmer_proba <- function(kmers, pseudocount = 1) {
             knowing_lprob = log(knowing_prob)
         ) %>%
         select(kmer, knowing, emission, count, knowing_prob, knowing_lprob, prob, lprob)
+
+    class(probs) <- class(kmers)
+    class(probs)[1] <- "beemm_proba_table"
+    attr(probs, "kmer_size") <- kmer_size(kmers)
+
+    probs
 }
+
+#' Check if an object is a kmer probability table
+#'
+#' @param x An object to check
+#' @return Logical value indicating if the object is a kmer probability table
+#' 
+#' @export 
+is_kmer_proba <- function(x) {
+  "beemm_proba_table" %in% class(x)
+}
+

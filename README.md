@@ -6,26 +6,32 @@
 
 *Julie, Matilda, Léo, Laure*
 
-`r build_markov(sequence_table, order)`
-
+```r
+build_markov(sequence_table, order)`
+```
 - **return** : une table kmer_proba
 
 ### markow_likelihood
 
 *Miléna, Lise, Dorine, Manon*
 
-`r markow_likelihood(sequence, table_kmer_proba, log=TRUE)`
-
+```r 
+markow_likelihood(sequence, table_kmer_proba, log=TRUE)`
+```
 
 ### markov_likelihood_seq
 
 *Lisa, Océane, Justine*
 
-`r markov_likelihood_seq(sequence_table, table_kmer_proba)`
+```r 
+markov_likelihood_seq(sequence_table, table_kmer_proba)`
+```
 
 ou 
 
-`r markov_likelihood_seq(sequence_table, ...)`
+```r 
+markov_likelihood_seq(sequence_table, ...)`
+```
 
 ### markov_specificity
 

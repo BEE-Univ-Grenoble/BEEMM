@@ -12,7 +12,6 @@
 #'   - `lprob` : the (log)likelihood for each sequence, if the model name is precised, colone name = model name.
 #' @export
 #'
-#' @importFrom BEEMM markov_likelihood
 #' @importFrom dplyr mutate
 #' @return a vector of likelihood values
 #'

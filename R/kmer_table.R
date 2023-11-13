@@ -190,3 +190,36 @@ kmer_table_seq <- function(sequences, k) {
     lapply(kmer_table, k = k) %>% # Generate k-mer table for each sequence
     do.call(sum_table, .) # Combine k-mer tables into a single table
 }
+
+
+#' @export
+kmer_vector <- function(sequence, k) {
+  # Get the length of the sequence
+  n <- nchar(sequence)
+
+  # Generate all possible k-mers
+  kmers <- tibble(start = 1:(n - k + 1)) %>%
+    mutate(end = start + k - 1) %>%
+    mutate(kmer = str_to_lower(str_sub(sequence, start, end)))
+
+  # Convert the k-mers to a k-mer table
+  as_kmer_vector(kmers)
+}
+
+#' @export
+as_kmer_vector <- function(x) {
+  if (! "kmer" %in% names(x)) {
+    stop("A beemm_kmer_vector must have columns named : kmer & count")
+  }
+
+  kmers <- x %>%
+    select(kmer) %>%
+    filter(str_detect(kmer, pattern = "^[acgt]+$")) %>%
+    as_tibble()
+
+
+  class(kmers) <- c("beemm_kmer_vector", class(kmers))
+
+  kmers
+}
+

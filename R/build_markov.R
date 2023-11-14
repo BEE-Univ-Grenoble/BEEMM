@@ -22,11 +22,10 @@
 #' @export
 #' @importFrom BEEMM read_fasta kmer_table_seq kmer_proba
 
-build_markov <- function(fasta_file, order_markov) {
+build_markov <- function(sequences, order_markov) {
   k = order_markov + 1
-  tab <- read_fasta(fasta_file)
-  kmer_tab <- kmer_table_seq(tab, k)
-  proba <- kmer_proba(kmer_tab)
+  kmer_table_seq(sequences, k) %>%
+    proba <- kmer_proba(kmer_tab)
 }
 
 

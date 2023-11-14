@@ -45,5 +45,5 @@ output <- seqs %>%
   rename({{lprob_name}} := loglikelihood,
          {{prob_name}} := likelihood)
 
-  output %>% select(id,prob,lprob,sequence)
+  output %>% select(id,{{prob_name}},{{lprob_name}},sequence)
 }

@@ -20,7 +20,6 @@
 #' proba_markov <- build_markov("mus_cpg_app.fa", 3)
 #'
 #' @export
-#' @importFrom BEEMM read_fasta kmer_table_seq kmer_proba
 
 build_markov <- function(sequences, order_markov) {
   k = order_markov + 1

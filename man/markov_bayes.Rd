@@ -4,10 +4,10 @@
 \alias{markov_bayes}
 \title{Title}
 \usage{
-markov_bayes(M0, M1, sequence_testing, priorM0 = 0.5)
+markov_bayes(M0, M1, sequence_testing, priorM1 = 0.5)
 }
 \arguments{
-\item{priorM0}{}
+\item{priorM1}{}
 }
 \description{
 Title

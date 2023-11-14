@@ -3,7 +3,7 @@
 #' @param M0
 #' @param M1
 #' @param sequence_testing
-#' @param priorM0
+#' @param priorM1
 #'
 #' @return
 #' @export
@@ -11,7 +11,7 @@
 #' @importFrom matrixStats logSumExp
 #'
 #' @examples
-markov_bayes <- function (M0, M1, sequence_testing, priorM0 = 0.5) {
+markov_bayes <- function (M0, M1, sequence_testing, priorM1 = 0.5) {
 
   #compute lihelihood for each sequence for both models
   l_M0 <- markov_likelihood_seq(seqs = sequence_testing, M0 = M0)
@@ -25,7 +25,7 @@ markov_bayes <- function (M0, M1, sequence_testing, priorM0 = 0.5) {
 
   #compute likelihood for each model
 
-  priorM1 = 1 - priorM0
+  priorM0 = 1 - priorM1
 
   lpm0 <- log(priorM0)
   lpm1 <- log(priorM1)

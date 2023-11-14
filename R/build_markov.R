@@ -24,7 +24,7 @@
 build_markov <- function(sequences, order_markov) {
   k = order_markov + 1
   kmer_table_seq(sequences, k) %>%
-    proba <- kmer_proba(kmer_tab)
+    kmer_proba()
 }
 
 

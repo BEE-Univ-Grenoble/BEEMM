@@ -4,14 +4,12 @@
 \alias{markov_likelihood_seq}
 \title{Function to calculate the log likelihood of every sequences}
 \usage{
-markov_likelihood_seq(seqs, ..., log = TRUE)
+markov_likelihood_seq(seqs, ...)
 }
 \arguments{
 \item{seqs}{any table of multiple colones were the sequences are contain in a colone named "sequence"}
 
 \item{...}{table of probability of a markov model created with function build_markov, model can be named : model1 = modelprobtable.}
-
-\item{log}{default value = TRUE : output in log likelihood. FALSE : ouput in likelihood}
 }
 \value{
 a table of columns

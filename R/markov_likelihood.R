@@ -11,22 +11,27 @@
 
 markov_likelihood<-function(sequence,table_kmer_proba,log=TRUE){
 
-  ordre<-kmer_size(table_kmer_proba)
-  table<-kmer_table(sequence,ordre)
+  ws<-kmer_size(table_kmer_proba)
+  table<-kmer_table(sequence,ws)
 
-  Tableau <- left_join(table,table_kmer_proba,by="kmer")%>%
+
+
+  proba <- left_join(table,table_kmer_proba,by="kmer") %>%
              mutate(p=count.x * lprob) %>%
-             summarise(p=sum(p))
+             summarise(p=sum(p)) %>%
+             pull(p)
 
 
-  Init<-substr(sequence,1,ordre-1)
 
-  Initlprob<-table_kmer_proba$knowing_lprob[table_kmer_proba$knowing==Init,]
+  Init<-str_to_lower(substr(sequence,1,ws-1))
 
-  p<-p+Initlprob
+  Initlprob <- table_kmer_proba$knowing_lprob[table_kmer_proba$knowing==Init]
+
+  proba <- proba + Initlprob[1]
+
 
   if(log==FALSE){
-    p<-exp(p)
+    proba <- exp(proba)
   }
-  return(p)
+  return(proba)
 }

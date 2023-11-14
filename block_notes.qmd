@@ -1,0 +1,78 @@
+---
+title: "Block notes"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(BEEMM)
+```
+
+```{r}
+seq <- "gctagctagctagctgtcggtcagtgctagdatgcgtatfgcgtagctagctagctagcttgctaggtcgta"
+n <- nchar(seq)
+k <- 4
+```
+
+```{r}
+tibble(start = 1:(n-k+1)) %>%
+  mutate(end = start + k -1) %>%
+  mutate(kmer = str_sub(seq,start,end)) %>%
+  group_by(kmer) %>%
+  summarize(count = n()) -> kmers
+
+kmers
+```
+
+```{r}
+toto <- function(...) {
+  x <- list(...)
+  <- flatten(x)
+  do.call(sum,x)
+}
+```
+
+```{r}
+cpg <- read_fasta("data/mus_cpg_app.fa")
+tem <- read_fasta("data/mus_tem_app.fa")
+
+cpg_words <- kmer_table_seq(cpg,k = 5)
+tem_words <- kmer_table_seq(tem,k = 5)
+
+cpg_model <- kmer_proba(cpg_words)
+tem_model <- kmer_proba(tem_words)
+```
+
+```{r}
+seq1 <- read_fasta("data/mus1.fa")
+seq2 <- read_fasta("data/mus2.fa")
+seq3 <- read_fasta("data/mus3.fa")
+
+tm <- matrix(0,nrow = 2, ncol = 2)
+rownames(tm) <- c("CPG","TEM")
+colnames(tm) <- c("CPG","TEM")
+tm[1,1] <- 1 - 1/1000
+tm[2,1] <- 1/125000
+tm[1,2] <- 1/1000
+tm[2,2] <- 1 - 1/125000
+```
+
+```{r}
+v1 <- viterbi(seq1$sequence,M0 = cpg_model,M1 = tem_model, transitions = tm)
+v2 <- viterbi(seq2$sequence,M0 = cpg_model,M1 = tem_model, transitions = tm)
+v3 <- viterbi(seq3$sequence,M0 = cpg_model,M1 = tem_model, transitions = tm)
+
+```
+
+```{r}
+HMM_as_sequence(v1)
+```
+
+```{r}
+HMM_as_sequence(v2)
+```
+
+```{r}
+HMM_as_sequence(v3)
+```

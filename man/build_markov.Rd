@@ -4,12 +4,12 @@
 \alias{build_markov}
 \title{A function to return conditional probabilities from a Markov model of a given order.}
 \usage{
-build_markov(fasta_file, order_markov)
+build_markov(sequences, order_markov)
 }
 \arguments{
-\item{fasta_file}{A fasta file, containing a list of genetic sequences.}
-
 \item{order_markov}{Order of the Markov model.}
+
+\item{fasta_file}{A fasta file, containing a list of genetic sequences.}
 }
 \value{
 A data frame with the following columns:
@@ -28,7 +28,7 @@ A data frame with the following columns:
 A function to return conditional probabilities from a Markov model of a given order.
 }
 \examples{
-To build a Markov model of order 3, on a fasta file named "mus_cpg_app.fa" containing sequences.
-proba_markov <- build_markov("mus_cpg_app.fa", 3)
+  #To build a Markov model of order 3, on a fasta file named "mus_cpg_app.fa" containing sequences.
+  proba_markov <- build_markov("mus_cpg_app.fa", 3)
 
 }

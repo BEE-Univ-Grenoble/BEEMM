@@ -65,6 +65,7 @@ every_kmer_table <- function(k, pseudocount = 1) {
 #'
 #' @param x An object to check
 #' @return Logical value indicating if the object is a kmer table
+#' @export
 is_kmer_table <- function(x) {
   "beemm_kmer_table" %in% class(x)
 }
@@ -107,21 +108,6 @@ kmer_table <- function(sequence, k) {
 
 
 
-#' Get the kmer size of a kmer table
-#'
-#' @param x A kmer table object
-#'
-#' @return The kmer size of the kmer table
-#' @export
-kmer_size <- function(x) {
-  # Check if x is of class beemm_kmer_table
-  if (!is_kmer_table(x)) {
-    stop("kmer_size requires an x value of class beemm_kmer_table")
-  }
-
-  # Retrieve the kmer size attribute from x
-  attr(x, "kmer_size")
-}
 
 
 

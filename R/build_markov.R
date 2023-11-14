@@ -16,8 +16,8 @@
 #'   }
 #'
 #' @examples
-#' To build a Markov model of order 3, on a fasta file named "mus_cpg_app.fa" containing sequences.
-#' proba_markov <- build_markov("mus_cpg_app.fa", 3)
+#'   #To build a Markov model of order 3, on a fasta file named "mus_cpg_app.fa" containing sequences.
+#'   proba_markov <- build_markov("mus_cpg_app.fa", 3)
 #'
 #' @export
 
